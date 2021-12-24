@@ -3,13 +3,27 @@ import React from 'react';
 export default class AuthForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ value: '' });
-    this.handleChange = this.handleChange.bind(this);
+    this.state = ({
+      email: '',
+      username: '',
+      password: ''
+    });
+    this.emailChange = this.emailChange.bind(this);
+    this.usernameChange = this.usernameChange.bind(this);
+    this.passwordChange = this.passwordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
+  emailChange(event) {
+    this.setState({ email: event.target.value });
+  }
+
+  usernameChange(event) {
+    this.setState({ username: event.target.value });
+  }
+
+  passwordChange(event) {
+    this.setState({ password: event.target.value });
   }
 
   handleSubmit() {
@@ -27,13 +41,13 @@ export default class AuthForm extends React.Component {
           <form onClick={this.handleSubmit}>
             <div className='form-inputs'>
               <label>Email
-                <div className='email'><input id="email" type="email" placeholder="example@example.com" value={this.state.value} onChange={this.handleChange}></input></div>
+                <div className='email'><input id="email" type="email" placeholder="example@example.com" value={this.state.value} onChange={this.emailChange}></input></div>
               </label>
               <label>Username
-                <div className='username'><input id="username" type="text" placeholder="Username" value={this.state.value} onChange={this.handleChange}></input></div>
+                <div className='username'><input id="username" type="text" placeholder="Username" value={this.state.value} onChange={this.usernameChange}></input></div>
               </label>
               <label>Password
-                <div className='password'><input id="password" type="password" placeholder="*******" value={this.state.value} onChange={this.handleChange}></input></div>
+                <div className='password'><input id="password" type="password" placeholder="*******" value={this.state.value} onChange={this.passwordChange}></input></div>
               </label>
               <div className='button-container'>
                 <button id='sign-up'>Sign Up</button>

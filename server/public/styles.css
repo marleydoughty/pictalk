@@ -1,7 +1,7 @@
 .header {
   display: flex;
   background-color: #f9c645;
-  padding-top: 25px;
+  padding-top: 5px;
 }
 
 input {
@@ -27,7 +27,7 @@ form {
 }
 
 h3 {
-  margin: 0;
+  margin: 10px 0 0;
   color: white;
   font-size: 25px;
   padding-left: 5px;
@@ -77,11 +77,15 @@ h3 {
   background-color: white;
   color: #ee6e72;
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .button-container {
   display: flex;
   flex-direction: column;
   margin-top: 33px;
+}
+
+.button-container :hover {
+  cursor: pointer;
 }
