@@ -8,11 +8,10 @@ create schema "public";
 
 CREATE TABLE "public"."users" (
 	"userId" serial NOT NULL,
-	"name" TEXT NOT NULL,
 	"username" TEXT NOT NULL,
 	"email" TEXT NOT NULL,
-	"password" TEXT NOT NULL,
-	"createdAt" timestamp with time zone NOT NULL,
+	"hashedPassword" TEXT NOT NULL,
+	"createdAt" timestamptz(0) NOT NULL default now(),
 	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE
