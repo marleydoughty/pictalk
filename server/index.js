@@ -6,6 +6,8 @@ const ClientError = require('./client-error');
 const argon2 = require('argon2');
 const pg = require('pg');
 const jwt = require('jsonwebtoken');
+const app = express();
+const jsonMiddleware = express.json();
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -14,10 +16,8 @@ const db = new pg.Pool({
   }
 });
 
-const app = express();
-
+app.use(jsonMiddleware);
 app.use(staticMiddleware);
-
 app.use(errorMiddleware);
 
 app.post('/api/auth/sign-up', (req, res, next) => {

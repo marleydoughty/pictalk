@@ -28,6 +28,15 @@ export default class AuthForm extends React.Component {
 
   handleSubmit() {
     event.preventDefault();
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    };
+    fetch('/api/auth/sign-up', req)
+      .then(res => res.text());
   }
 
   render() {
@@ -38,7 +47,7 @@ export default class AuthForm extends React.Component {
           <i className='far fa-comment comment-icon'></i>
         </div>
         <div className='card-container'>
-          <form onClick={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <div className='form-inputs'>
               <label>Email
                 <div className='email'><input id="email" type="email" placeholder="example@example.com" value={this.state.value} onChange={this.emailChange}></input></div>
