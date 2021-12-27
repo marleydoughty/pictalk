@@ -56,21 +56,21 @@ export default class AuthForm extends React.Component {
         <div className='card-container'>
           <form onSubmit={this.handleSubmit}>
             <div className='form-inputs'>
-              <label>Email
-                <div className='email'>
+              <div className='email'>
+                <label>Email
                   <input id="email" type="email" placeholder="example@example.com" value={this.state.email} onChange={this.emailChange}></input>
-                </div>
-              </label>
-              <label>Username
-                <div className='username'>
+                </label>
+              </div>
+              <div className='username'>
+                <label>Username
                   <input id="username" type="text" placeholder="Username" value={this.state.username} onChange={this.usernameChange}></input>
-                </div>
-              </label>
-              <label>Password
-                <div className='password'>
+                </label>
+              </div>
+              <div className='password'>
+                <label>Password
                   <input id="password" type="password" placeholder="*******" value={this.state.password} onChange={this.passwordChange}></input>
-                </div>
-              </label>
+                </label>
+              </div>
               <div className='button-container'>
                 <button id='sign-up'>Sign Up</button>
                 <button id='login'>Login</button>

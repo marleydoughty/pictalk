@@ -2,3 +2,9 @@ body {
   font-family: poppins, sans-serif;
   background-color: #f0f0f0;
 }
+
+@media screen and (min-width: 500px) {
+  .top-nav-bar {
+    display: none;
+  }
+}
