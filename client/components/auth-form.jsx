@@ -28,7 +28,6 @@ export default class AuthForm extends React.Component {
 
   handleSubmit() {
     event.preventDefault();
-    const form = event.target;
     const req = {
       method: 'POST',
       headers: {
@@ -40,7 +39,11 @@ export default class AuthForm extends React.Component {
       .then(res => res.json())
       .catch(err => console.error(err));
 
-    form.reset();
+    this.setState({
+      email: '',
+      username: '',
+      password: ''
+    });
   }
 
   render() {
@@ -55,17 +58,17 @@ export default class AuthForm extends React.Component {
             <div className='form-inputs'>
               <label>Email
                 <div className='email'>
-                  <input id="email" type="email" placeholder="example@example.com" value={this.state.value} onChange={this.emailChange}></input>
+                  <input id="email" type="email" placeholder="example@example.com" value={this.state.email} onChange={this.emailChange}></input>
                 </div>
               </label>
               <label>Username
                 <div className='username'>
-                  <input id="username" type="text" placeholder="Username" value={this.state.value} onChange={this.usernameChange}></input>
+                  <input id="username" type="text" placeholder="Username" value={this.state.username} onChange={this.usernameChange}></input>
                 </div>
               </label>
               <label>Password
                 <div className='password'>
-                  <input id="password" type="password" placeholder="*******" value={this.state.value} onChange={this.passwordChange}></input>
+                  <input id="password" type="password" placeholder="*******" value={this.state.password} onChange={this.passwordChange}></input>
                 </div>
               </label>
               <div className='button-container'>
