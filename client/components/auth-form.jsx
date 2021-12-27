@@ -28,6 +28,7 @@ export default class AuthForm extends React.Component {
 
   handleSubmit() {
     event.preventDefault();
+    const form = event.target;
     const req = {
       method: 'POST',
       headers: {
@@ -36,7 +37,10 @@ export default class AuthForm extends React.Component {
       body: JSON.stringify(this.state)
     };
     fetch('/api/auth/sign-up', req)
-      .then(res => res.text());
+      .then(res => res.json())
+      .catch(err => console.error(err));
+
+    form.reset();
   }
 
   render() {
@@ -50,13 +54,19 @@ export default class AuthForm extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <div className='form-inputs'>
               <label>Email
-                <div className='email'><input id="email" type="email" placeholder="example@example.com" value={this.state.value} onChange={this.emailChange}></input></div>
+                <div className='email'>
+                  <input id="email" type="email" placeholder="example@example.com" value={this.state.value} onChange={this.emailChange}></input>
+                </div>
               </label>
               <label>Username
-                <div className='username'><input id="username" type="text" placeholder="Username" value={this.state.value} onChange={this.usernameChange}></input></div>
+                <div className='username'>
+                  <input id="username" type="text" placeholder="Username" value={this.state.value} onChange={this.usernameChange}></input>
+                </div>
               </label>
               <label>Password
-                <div className='password'><input id="password" type="password" placeholder="*******" value={this.state.value} onChange={this.passwordChange}></input></div>
+                <div className='password'>
+                  <input id="password" type="password" placeholder="*******" value={this.state.value} onChange={this.passwordChange}></input>
+                </div>
               </label>
               <div className='button-container'>
                 <button id='sign-up'>Sign Up</button>
