@@ -8,3 +8,11 @@ body {
     display: none;
   }
 }
+
+/* @media screen and (max-width: 768px) {
+  .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+} */

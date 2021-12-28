@@ -4,9 +4,8 @@ export default class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      icons: []
     };
-
   }
 
   render() {
@@ -15,7 +14,11 @@ export default class HomePage extends React.Component {
         <div className='top-nav-bar'></div>
         <div className='sentence-strip'></div>
         <div className='icon-container'>
-          <img src=''></img>
+          <img src='https://www.freeiconspng.com/thumbs/yes-png/yes-png-9.png'></img>
+          <img src='https://www.freeiconspng.com/thumbs/yes-png/yes-png-9.png'></img>
+          <img src='https://www.freeiconspng.com/thumbs/yes-png/yes-png-9.png'></img>
+          <img src='https://www.freeiconspng.com/thumbs/yes-png/yes-png-9.png'></img>
+          <img src='https://www.freeiconspng.com/thumbs/yes-png/yes-png-9.png'></img>
         </div>
         <div className='bottom-nav-bar'>
           <i className='fas fa-home home-button'></i>
