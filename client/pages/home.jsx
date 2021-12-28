@@ -1,11 +1,12 @@
 import React from 'react';
-// import AuthForm from '../components/auth-form';
-import HomePage from '../components/home-page';
+import AccountInfo from '../components/account-info';
+// import HomePage from '../components/home-page';
+
 export default function Home(props) {
   return (
     <>
-    {/* <AuthForm/> */}
-    <HomePage/>
+    <AccountInfo/>
+    {/* <HomePage/> */}
     </>
   );
 }

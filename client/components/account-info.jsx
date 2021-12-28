@@ -1,21 +1,16 @@
 import React from 'react';
 
-export default class AuthForm extends React.Component {
+export default class AccountInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
-      email: '',
       username: '',
       password: ''
     });
-    this.emailChange = this.emailChange.bind(this);
+
     this.usernameChange = this.usernameChange.bind(this);
     this.passwordChange = this.passwordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  emailChange(event) {
-    this.setState({ email: event.target.value });
   }
 
   usernameChange(event) {
@@ -28,6 +23,7 @@ export default class AuthForm extends React.Component {
 
   handleSubmit() {
     event.preventDefault();
+    const { action } = this.props;
     const req = {
       method: 'POST',
       headers: {
@@ -35,18 +31,25 @@ export default class AuthForm extends React.Component {
       },
       body: JSON.stringify(this.state)
     };
-    fetch('/api/auth/sign-up', req)
+    fetch(`/api/auth/${action}`, req)
       .then(res => res.json())
+      .then(result => {
+        if (action === 'sign-up') {
+          window.location.hash = 'sign-up';
+        } else if (result.user && result.token) {
+          this.props.onSignIn(result);
+        }
+      })
       .catch(err => console.error(err));
 
     this.setState({
-      email: '',
       username: '',
       password: ''
     });
   }
 
   render() {
+    const { action } = this.props;
     return (
       <>
         <div className='header'>
@@ -56,24 +59,20 @@ export default class AuthForm extends React.Component {
         <div className='card-container'>
           <form onSubmit={this.handleSubmit}>
             <div className='form-inputs'>
-              <div className='email'>
-                <label>Email
-                  <input id="email" type="email" placeholder="example@example.com" value={this.state.email} onChange={this.emailChange}></input>
-                </label>
-              </div>
+              <h2>{action === 'sign-up' ? 'Sign up' : 'Login'}</h2>
               <div className='username'>
-                <label>Username
-                  <input id="username" type="text" placeholder="Username" value={this.state.username} onChange={this.usernameChange}></input>
-                </label>
-              </div>
-              <div className='password'>
-                <label>Password
-                  <input id="password" type="password" placeholder="*******" value={this.state.password} onChange={this.passwordChange}></input>
+                 <label>Username
+                   <input id="username" type="text" placeholder="Username" value={this.state.username} onChange={this.usernameChange}></input>
+                 </label>
+               </div>
+               <div className='password'>
+                 <label>Password
+                   <input id="password" type="password" placeholder="*******" value={this.state.password} onChange={this.passwordChange}></input>
                 </label>
               </div>
               <div className='button-container'>
-                <button id='sign-up'>Sign Up</button>
-                <button id='login'>Login</button>
+                <button id='sign-up'><a href="sign-up"></a>{action === 'sign-up' ? 'Sign up' : 'Login'}</button>
+                <div><span>{action === 'sign-up' ? 'Have an existing account?' : 'Need an account?'}</span><a href={action === 'sign-up' ? '#login' : '#sign-up'} id='login'>{action === 'sign-up' ? 'Login' : 'Sign up'}</a></div>
               </div>
             </div>
           </form>
