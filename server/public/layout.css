@@ -2,3 +2,17 @@ body {
   font-family: poppins, sans-serif;
   background-color: #f0f0f0;
 }
+
+@media screen and (min-width: 500px) {
+  .top-nav-bar {
+    display: none;
+  }
+}
+
+/* @media screen and (max-width: 768px) {
+  .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+} */
