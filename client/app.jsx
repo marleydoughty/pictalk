@@ -8,7 +8,6 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({ route: parseRoute(window.location.hash) });
-    this.renderPage = this.renderPage.bind(this);
   }
 
   componentDidMount() {
