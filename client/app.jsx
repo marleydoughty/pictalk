@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './pages/home';
+
 import HomePage from './components/home-page';
 import AccountInfo from './components/account-info';
 import parseRoute from './lib/parse-route';
@@ -8,6 +8,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({ route: parseRoute(window.location.hash) });
+    this.renderPage = this.renderPage.bind(this);
   }
 
   componentDidMount() {
@@ -18,17 +19,20 @@ export default class App extends React.Component {
 
   renderPage() {
     const { route } = this.state;
-    if (route.path === '') {
-      return <AccountInfo routePath={route.path} />;
+    if (route.path === 'login' || route.path === '') {
+      return <AccountInfo action="sign-in" />;
+    } else if (route.path === 'sign-up') {
+      return <AccountInfo action="sign-up" />;
     } else if (route.path === 'home-page') {
       return <HomePage/>;
+    } else {
+      return <div>Hash route not found</div>;
     }
   }
 
   render() {
     return (
     <>
-      <Home />
       {this.renderPage()};
     </>
     );

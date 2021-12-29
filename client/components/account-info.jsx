@@ -35,9 +35,10 @@ export default class AccountInfo extends React.Component {
       .then(res => res.json())
       .then(result => {
         if (action === 'sign-up') {
-          window.location.hash = 'sign-up';
-        } else if (result.user && result.token) {
-          this.props.onSignIn(result);
+          window.location.hash = 'login';
+        } else if (action === 'sign-in') {
+          window.localStorage.setItem('token', result.token);
+          window.location.hash = 'home-page';
         }
       })
       .catch(err => console.error(err));
@@ -59,20 +60,34 @@ export default class AccountInfo extends React.Component {
         <div className='card-container'>
           <form onSubmit={this.handleSubmit}>
             <div className='form-inputs'>
-              <h2>{action === 'sign-up' ? 'Sign up' : 'Login'}</h2>
+              <h2>{action === 'sign-up' ? 'Sign up' : 'Welcome back!'}</h2>
               <div className='username'>
                  <label>Username
-                   <input id="username" type="text" placeholder="Username" value={this.state.username} onChange={this.usernameChange}></input>
+                   <input id="username"
+                    type="text"
+                    placeholder="Username"
+                    value={this.state.username}
+                    onChange={this.usernameChange}></input>
                  </label>
                </div>
                <div className='password'>
                  <label>Password
-                   <input id="password" type="password" placeholder="*******" value={this.state.password} onChange={this.passwordChange}></input>
+                   <input id="password"
+                   type="password"
+                   placeholder="*******"
+                   value={this.state.password}
+                   onChange={this.passwordChange}></input>
                 </label>
               </div>
               <div className='button-container'>
-                <button id='sign-up'><a href="sign-up"></a>{action === 'sign-up' ? 'Sign up' : 'Login'}</button>
-                <div><span>{action === 'sign-up' ? 'Have an existing account?' : 'Need an account?'}</span><a href={action === 'sign-up' ? '#login' : '#sign-up'} id='login'>{action === 'sign-up' ? 'Login' : 'Sign up'}</a></div>
+                <button id='sign-up'>
+                  <a href="sign-up"></a>{action === 'sign-up' ? 'Sign up' : 'Login'}</button>
+                <div><span>
+                  {action === 'sign-up' ? 'Have an existing account?' : 'Need an account?'}
+                  </span>
+                  <a href={action === 'sign-in' ? '#sign-up' : '#login'} id='login'>
+                    {action === 'sign-in' ? 'Sign up' : 'Login'}</a>
+                  </div>
               </div>
             </div>
           </form>
