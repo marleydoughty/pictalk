@@ -9,10 +9,9 @@ body {
   }
 }
 
-/* @media screen and (max-width: 768px) {
-  .img-container {
-    display: flex;
+@media screen and (max-width: 768px) {
+  .icons-container {
     justify-content: center;
     align-items: center;
   }
-} */
+}
