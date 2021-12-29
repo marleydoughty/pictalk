@@ -83,7 +83,7 @@ export default class AccountInfo extends React.Component {
                 <button id='sign-up'>
                   <a href="sign-up"></a>{action === 'sign-up' ? 'Sign up' : 'Login'}</button>
                 <div><span>
-                  {action === 'sign-up' ? 'Have an existing account?' : 'Need an account?'}
+                  {action === 'sign-up' ? 'Already a member?' : 'Need an account?'}
                   </span>
                   <a href={action === 'sign-in' ? '#sign-up' : '#login'} id='login'>
                     {action === 'sign-in' ? 'Sign up' : 'Login'}</a>

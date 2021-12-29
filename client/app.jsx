@@ -25,7 +25,7 @@ export default class App extends React.Component {
     } else if (route.path === 'home-page') {
       return <HomePage/>;
     } else {
-      return <div>Hash route not found</div>;
+      return <div>Uh oh, we could not find the page you were looking for! </div>;
     }
   }
 
