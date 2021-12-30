@@ -7,7 +7,6 @@ export default class AccountInfo extends React.Component {
       username: '',
       password: ''
     });
-
     this.usernameChange = this.usernameChange.bind(this);
     this.passwordChange = this.passwordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -83,7 +82,7 @@ export default class AccountInfo extends React.Component {
                 <button id='sign-up'>
                   <a href="sign-up"></a>{action === 'sign-up' ? 'Sign up' : 'Login'}</button>
                 <div><span>
-                  {action === 'sign-up' ? 'Have an existing account?' : 'Need an account?'}
+                  {action === 'sign-up' ? 'Already a member?' : 'Need an account?'}
                   </span>
                   <a href={action === 'sign-in' ? '#sign-up' : '#login'} id='login'>
                     {action === 'sign-in' ? 'Sign up' : 'Login'}</a>
