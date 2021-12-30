@@ -1,5 +1,5 @@
 insert into "users" ( "username", "hashedPassword")
-values ('data','$argon2i$v=19$m=4096,t=3,p=1$dgdfgdfhhsgsgrebtrhr');
+values ('data2','$argon2i$v=19$m=4096,t=3,p=1$Nhjgyfvhguhjhhjg$');
 
 insert into "folders" ("userId", "name")
 values ('1','default'), ('1','self-help'),('1','food'), ('1','people'), ('1','feelings'),('1','toys'), ('1','animals'), ('1','shapes'), ('1','clothes'), ('1', 'places');

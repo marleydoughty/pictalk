@@ -79,6 +79,12 @@ app.post('/api/auth/sign-in', (req, res, next) => {
 });
 
 app.use(authorizationMiddleware);
+app.get('/api/icons', (req, res, next) => {
+  const sql = 'select * from "icons"';
+  db.query(sql)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console

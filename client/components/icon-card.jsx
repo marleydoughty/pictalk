@@ -9,8 +9,11 @@ export default class IconCard extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/icons')
-      .then(response => response.text())
+    fetch('/api/icons', {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    })
+      .then(response => response.json())
       .then(data => {
         this.setState({
           icons: data
@@ -20,7 +23,7 @@ export default class IconCard extends React.Component {
   }
 
   render() {
-    const icons = this.props.icons;
+    const icons = this.state.icons;
     const allIcons = icons.map(icon =>
       <div key={icon.iconId} className='icon-card'>
         <img src={icon.url}></img>
