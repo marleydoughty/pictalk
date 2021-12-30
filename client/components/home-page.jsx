@@ -17,7 +17,6 @@ export default class HomePage extends React.Component {
         </div>
         <div className='icons-container'>
           <IconCard />
-          {/* icons={this.state.icons}  */}
         </div>
         <div className='bottom-nav-bar'>
           <a href='#home=page'><i className='fas fa-home home-button'></i></a>

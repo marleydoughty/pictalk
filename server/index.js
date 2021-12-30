@@ -80,10 +80,8 @@ app.post('/api/auth/sign-in', (req, res, next) => {
 app.use(authorizationMiddleware);
 
 app.get('/api/icons', (req, res, next) => {
-  const { userId } = req.user;
-  const sql = 'select * from "icons where "userId" = $1';
-  const params = [userId];
-  db.query(sql, params)
+  const sql = 'select * from "icons"';
+  db.query(sql)
     .then(result => res.json(result.rows))
     .catch(err => next(err));
 });
