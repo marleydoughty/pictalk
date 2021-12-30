@@ -79,9 +79,11 @@ app.post('/api/auth/sign-in', (req, res, next) => {
 
 app.use(authorizationMiddleware);
 
-app.get('/api/icons', (req, res, next) => {
-  const sql = 'select * from "icons"';
-  db.query(sql)
+app.get('/api/icons/:folderId', (req, res, next) => {
+  const folderId = req.params.folderId;
+  const sql = 'select * from "icons" where "folderId" = $1';
+  const params = [folderId];
+  db.query(sql, params)
     .then(result => res.json(result.rows))
     .catch(err => next(err));
 });
