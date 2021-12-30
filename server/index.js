@@ -19,7 +19,6 @@ const db = new pg.Pool({
 
 app.use(jsonMiddleware);
 app.use(staticMiddleware);
-app.use(errorMiddleware);
 
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { username, password } = req.body;
@@ -79,12 +78,17 @@ app.post('/api/auth/sign-in', (req, res, next) => {
 });
 
 app.use(authorizationMiddleware);
+
 app.get('/api/icons', (req, res, next) => {
-  const sql = 'select * from "icons"';
-  db.query(sql)
+  const { userId } = req.user;
+  const sql = 'select * from "icons where "userId" = $1';
+  const params = [userId];
+  db.query(sql, params)
     .then(result => res.json(result.rows))
     .catch(err => next(err));
 });
+
+app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console

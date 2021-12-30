@@ -1,5 +1,4 @@
 import React from 'react';
-
 import HomePage from './components/home-page';
 import AccountInfo from './components/account-info';
 import parseRoute from './lib/parse-route';
@@ -7,7 +6,9 @@ import parseRoute from './lib/parse-route';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ route: parseRoute(window.location.hash) });
+    this.state = ({
+      route: parseRoute(window.location.hash)
+    });
   }
 
   componentDidMount() {
@@ -31,9 +32,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-    <>
-      {this.renderPage()};
-    </>
+        <>
+          {this.renderPage()};
+        </>
     );
   }
 }

@@ -9,9 +9,12 @@ export default class IconCard extends React.Component {
   }
 
   componentDidMount() {
+    const token = window.localStorage.getItem('react-context-jwt');
     fetch('/api/icons', {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
+      headers: {
+        'X-Access-Token': token,
+        'Content-Type': 'application/json'
+      }
     })
       .then(response => response.json())
       .then(data => {
@@ -24,7 +27,7 @@ export default class IconCard extends React.Component {
 
   render() {
     const icons = this.state.icons;
-    const allIcons = icons.map(icon =>
+    const allIcons = Object.keys(icons).map(icon =>
       <div key={icon.iconId} className='icon-card'>
         <img src={icon.url}></img>
         <p>{icon.name}</p>
