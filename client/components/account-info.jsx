@@ -7,7 +7,6 @@ export default class AccountInfo extends React.Component {
       username: '',
       password: ''
     });
-
     this.usernameChange = this.usernameChange.bind(this);
     this.passwordChange = this.passwordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

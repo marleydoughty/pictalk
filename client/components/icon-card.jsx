@@ -8,12 +8,27 @@ export default class IconCard extends React.Component {
     });
   }
 
+  componentDidMount() {
+    fetch('/api/icons')
+      .then(response => response.text())
+      .then(data => {
+        this.setState({
+          icons: data
+        });
+      })
+      .catch(err => console.error('Unexpected error occured', err));
+  }
+
   render() {
-    return (
-      <div className='icon-card'>
-        <img src="/icons/help.png"></img>
-        <p>help</p>
+    const icons = this.props.icons;
+    const allIcons = icons.map(icon =>
+      <div key={icon.iconId} className='icon-card'>
+        <img src={icon.url}></img>
+        <p>{icon.name}</p>
       </div>
+    );
+    return (
+      <div>{allIcons}</div>
     );
   }
 }

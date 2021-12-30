@@ -8,7 +8,7 @@ insert into "icons" ("folderId", "name",  "url")
 values ('1','I','/icons/I.png'),('1','want','/icons/want.png'),('1','help','/icons/help.png'),
       ('1','more','/icons/more.png'),('1','please','/icons/please.png'),('1','thanks','/icons/thanks.png'),
       ('1','give','/icons/give.png'),('1','eat','/icons/eat.png'),('1','food','/icons/food.png'),
-      ('1','no','/icons/no.png'),('1','yes', '/icons/yes.png'), ('1','go','/icons/go.png'),
+      ('1','no','/icons/no.png'),('1','yes', '/icons/yes.png'), ('1','go','/icons/go.png'),('1','stop','/icons/stop.png'),
       ('1','toys','/icons/toys.png'),('1','you','/icons/you.png'), ('1','feel','/icons/feel.png'),
       ('2','potty','/icons/potty.png'),('2','wash-hands','/icons/wash-hands.png'),('2','shower','/icons/shower.png'),
       ('3','burrito','/icons/burrito.png'),('3','cheese','/icons/cheese.png'),('3', 'chicken nuggets','/icons/chicken-nuggets.png'),
