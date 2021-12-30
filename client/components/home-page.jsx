@@ -1,5 +1,6 @@
 import React from 'react';
 import IconCard from './icon-card';
+import SentenceStrip from './sentence-strip';
 
 export default class HomePage extends React.Component {
   constructor(props) {
@@ -13,8 +14,7 @@ export default class HomePage extends React.Component {
     return (
       <div className='home-page-container'>
         <div className='top-nav-bar'></div>
-        <div className='sentence-strip'>
-        </div>
+        <SentenceStrip/>
         <div className='icons-container'>
           <IconCard />
         </div>
