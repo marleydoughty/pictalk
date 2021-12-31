@@ -37,7 +37,8 @@
 .sentence-strip {
   background-color: white;
   border-radius: 5px;
-  height: 100px;
+  height: 115px;
+  display: flex;
 }
 
 .icons-container {
