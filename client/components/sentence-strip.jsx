@@ -1,6 +1,6 @@
 import React from 'react';
-// import IconCard from './icon-card';
 import IconCardItem from './icon-card-item';
+
 export default class SentenceStrip extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +10,7 @@ export default class SentenceStrip extends React.Component {
   }
 
   handleSpeak() {
-    const utterance = new SpeechSynthesisUtterance('I want help please');
+    const utterance = new SpeechSynthesisUtterance('how are you');
     window.speechSynthesis.speak(utterance);
   }
 
@@ -20,9 +20,13 @@ export default class SentenceStrip extends React.Component {
       <IconCardItem icon={icon} onClick={() => this.props.onClickIcon(icon)} key={icon.iconId} />
     ));
     return (
-      <div className='sentence-strip'>
-        {allIcons}
-        <button className='play-button' onClick={this.handleSpeak}><i className='fas fa-play'></i></button>
+      <div className='sentence-strip-container'>
+        <div className='sentence-strip'>
+          {allIcons}
+        </div>
+        <div onClick={this.handleSpeak} className='play-button-container'>
+         <i className='fas fa-play play-button'></i>
+        </div>
       </div>
     );
   }

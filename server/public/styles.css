@@ -4,8 +4,10 @@
   padding-top: 5px;
 }
 
-.hidden {
-  display: none;
+.comment-icon {
+  color: white;
+  padding-left: 3px;
+  font-size: 29px;
 }
 
 .top-nav-bar,
@@ -29,15 +31,16 @@
   height: 50px;
 }
 
-.home-button {
-  color: white;
-  font-size: 30px;
-}
-
-.sentence-strip {
+.sentence-strip-container {
   background-color: white;
   border-radius: 5px;
   height: 115px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sentence-strip {
   display: flex;
 }
 
@@ -70,47 +73,6 @@
   object-fit: contain;
 }
 
-input {
-  width: 250px;
-  height: 35px;
-  border-radius: 5px;
-  border-width: thin;
-}
-
-label {
-  padding-bottom: 10px;
-  color: grey;
-  display: flex;
-  flex-direction: column;
-}
-
-form {
-  box-shadow: 0 2px 7px 0 gray;
-}
-
-.comment-icon {
-  color: white;
-  padding-left: 3px;
-  font-size: 29px;
-}
-
-h3 {
-  margin: 10px 0 0;
-  color: white;
-  font-size: 25px;
-  padding-left: 5px;
-}
-
-span {
-  padding-right: 3px;
-}
-
-.password,
-.email,
-.username {
-  padding: 5px;
-}
-
 .card-container {
   border-radius: 5px;
   display: flex;
@@ -131,6 +93,12 @@ span {
   padding: 25px 15px;
   align-items: center;
   border-radius: 6px;
+}
+
+.password,
+.email,
+.username {
+  padding: 5px;
 }
 
 #sign-up {
@@ -162,7 +130,46 @@ span {
   cursor: pointer;
 }
 
+.play-button-container {
+  margin-right: 10px;
+}
+
 .play-button {
-  height: 20px;
   color: green;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.home-button {
+  color: white;
+  font-size: 30px;
+}
+
+label {
+  padding-bottom: 10px;
+  color: grey;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 250px;
+  height: 35px;
+  border-radius: 5px;
+  border-width: thin;
+}
+
+form {
+  box-shadow: 0 2px 7px 0 gray;
+}
+
+h3 {
+  margin: 10px 0 0;
+  color: white;
+  font-size: 25px;
+  padding-left: 5px;
+}
+
+span {
+  padding-right: 3px;
 }
