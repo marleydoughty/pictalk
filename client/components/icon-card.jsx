@@ -1,4 +1,5 @@
 import React from 'react';
+import IconCardItem from './icon-card-item';
 
 export default class IconCard extends React.Component {
   constructor(props) {
@@ -27,12 +28,9 @@ export default class IconCard extends React.Component {
 
   render() {
     const icons = this.state.icons;
-    const allIcons = icons.map(icon =>
-      <div key={icon.iconId} className='icon-card'>
-        <img src={icon.url}></img>
-        <p>{icon.name}</p>
-      </div>
-    );
+    const allIcons = icons.map(icon => (
+      <IconCardItem icon={icon} onClick={() => this.props.onClickIcon(icon)} key={icon.iconId} />
+    ));
     return (
       <>{allIcons}</>
     );
