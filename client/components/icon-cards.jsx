@@ -1,7 +1,7 @@
 import React from 'react';
 import IconCardItem from './icon-card-item';
 
-export default class IconCard extends React.Component {
+export default class IconCards extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
