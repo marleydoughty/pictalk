@@ -161,3 +161,8 @@ span {
 .button-container :hover {
   cursor: pointer;
 }
+
+.play-button {
+  height: 20px;
+  color: green;
+}

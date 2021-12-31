@@ -6,6 +6,12 @@ export default class SentenceStrip extends React.Component {
     super(props);
     this.state = ({
     });
+    this.handleSpeak = this.handleSpeak.bind(this);
+  }
+
+  handleSpeak() {
+    const utterance = new SpeechSynthesisUtterance('I want help please');
+    window.speechSynthesis.speak(utterance);
   }
 
   render() {
@@ -16,6 +22,7 @@ export default class SentenceStrip extends React.Component {
     return (
       <div className='sentence-strip'>
         {allIcons}
+        <button className='play-button' onClick={this.handleSpeak}><i className='fas fa-play'></i></button>
       </div>
     );
   }
