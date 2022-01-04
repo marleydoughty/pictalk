@@ -10,7 +10,11 @@ export default class SentenceStrip extends React.Component {
   }
 
   handleSpeak() {
-    const utterance = new SpeechSynthesisUtterance('how are you');
+    const words = this.props.words;
+    const sentence = words.map(word => {
+      return word.name;
+    });
+    const utterance = new SpeechSynthesisUtterance(sentence);
     window.speechSynthesis.speak(utterance);
   }
 
