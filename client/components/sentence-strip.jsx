@@ -1,37 +1,36 @@
 import React from 'react';
 import IconCardItem from './icon-card-item';
 
-export default class SentenceStrip extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = ({
-    });
-    this.handleSpeak = this.handleSpeak.bind(this);
-  }
-
-  handleSpeak() {
-    const words = this.props.words;
+const SentenceStrip = props => {
+  const handleSpeak = () => {
+    const words = props.words;
     const sentence = words.map(word => {
       return word.name;
     });
     const utterance = new SpeechSynthesisUtterance(sentence);
     window.speechSynthesis.speak(utterance);
-  }
+  };
 
-  render() {
-    const icons = this.props.words;
-    const allIcons = icons.map(icon => (
-      <IconCardItem icon={icon} onClick={() => this.props.onClickIcon(icon)} key={icon.iconId} />
-    ));
-    return (
-      <div className='sentence-strip-container'>
-        <div className='sentence-strip'>
-          {allIcons}
+  const icons = props.words;
+  const allIcons = icons.map(icon => (
+    <IconCardItem icon={icon} onClick={() => props.onClickIcon(icon)} key={icon.iconId} />
+  ));
+
+  return (
+    <div className='sentence-strip-container'>
+      <div className='sentence-strip'>
+        {allIcons}
+      </div>
+      <div className='buttons-container'>
+        <div onClick={handleSpeak} className='play-btn-container'>
+          <i className='fas fa-play play-btn'></i>
         </div>
-        <div onClick={this.handleSpeak} className='play-button-container'>
-         <i className='fas fa-play play-button'></i>
+        <div onClick={props.handleDelete}className='delete-btn-container'>
+          <i className='fas fa-backspace delete-btn'></i>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default SentenceStrip;
