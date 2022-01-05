@@ -1,6 +1,7 @@
 import React from 'react';
 import HomePage from './components/home-page';
 import AccountInfo from './components/account-info';
+import FoldersPage from './components/folders-page';
 import parseRoute from './lib/parse-route';
 
 export default class App extends React.Component {
@@ -25,6 +26,8 @@ export default class App extends React.Component {
       return <AccountInfo action="sign-up" />;
     } else if (route.path === 'home-page') {
       return <HomePage/>;
+    } else if (route.path === 'folders') {
+      return <FoldersPage/>;
     } else {
       return <div>Uh oh, we could not find the page you were looking for! </div>;
     }

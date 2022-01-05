@@ -155,9 +155,19 @@
   margin-right: 10px;
 }
 
-.home-button {
+.home-button,
+.folders-btn {
   color: white;
   font-size: 30px;
+}
+
+.home-button {
+  margin-right: 10px;
+}
+
+.folders-btn {
+  margin-left: 10px;
+  opacity: 50%;
 }
 
 label {
