@@ -9,29 +9,21 @@ export default class FoldersPage extends React.Component {
     this.state = {
       icons: []
     };
-    this.onClickIcon = this.onClickIcon.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
+    this.openFolder = this.openFolder.bind(this);
   }
 
-  onClickIcon(icon) {
-    this.setState({ icons: [...this.state.icons, icon] });
-  }
-
-  handleDelete() {
-    const words = this.state.icons;
-    const sentence = words.filter((element, index) => {
-      return index < words.length - 1;
-    });
-    this.setState({ icons: sentence });
+  openFolder() {
+    // eslint-disable-next-line no-console
+    console.log('It clicked');
   }
 
   render() {
     return (
       <div className='home-page-container'>
         <div className='top-nav-bar'></div>
-        <SentenceStrip handleDelete={this.handleDelete} words={this.state.icons} />
-        <div className='icons-container'>
-          <FolderIconCards onClickIcon={this.onClickIcon} />
+        <SentenceStrip words={this.state.icons} />
+        <div className='icons-container' onClick={this.openFolder}>
+          <FolderIconCards />
         </div>
         <BottomNavBar />
       </div>);

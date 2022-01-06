@@ -29,10 +29,11 @@ export default class FolderIconCards extends React.Component {
   render() {
     const icons = this.state.icons;
     const allIcons = icons.map(icon => (
-      <IconCardItem icon={icon} onClick={() => this.props.onClickIcon(icon)} key={icon.iconId} />
+      <IconCardItem icon={icon} key={icon.iconId} />
     ));
     return (
       <>{allIcons}</>
     );
   }
 }
+// onClick = {() => this.props.onClickIcon(icon)}
