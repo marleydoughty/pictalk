@@ -4,6 +4,11 @@
   padding-top: 5px;
 }
 
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
 .comment-icon {
   color: white;
   padding-left: 3px;
@@ -82,13 +87,15 @@
   right: 0;
 }
 
-.form-inputs {
+.form-inputs,
+.card-content {
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 25px 15px;
+  padding: 0 15px 25px;
   align-items: center;
   border-radius: 6px;
+  box-shadow: 1px 1px 4px 1px grey;
 }
 
 .password,
@@ -152,17 +159,12 @@
 }
 
 .home-button,
-.folders-btn {
+.folders-btn,
+.settings-btn {
   color: white;
   font-size: 30px;
-}
-
-.home-button {
-  margin-right: 10px;
-}
-
-.folders-btn {
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 .opacity {
@@ -174,6 +176,33 @@
   justify-content: center;
   text-align: center;
   font-size: 22px;
+}
+
+.settings-header {
+  font-size: 20px;
+}
+
+.settings-section h4 {
+  margin: 0;
+}
+
+.settings-section p {
+  font-size: 16px;
+}
+
+.flex-center h4 {
+  margin-left: 5px;
+  font-size: 18px;
+}
+
+.background-settings-page {
+  background-image: url("/icons/background-img5.jpeg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: 150vh;
 }
 
 label {

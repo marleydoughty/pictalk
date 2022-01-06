@@ -3,7 +3,7 @@ import HomePage from './components/home-page';
 import AccountInfo from './components/account-info';
 import FoldersPage from './components/folders-page';
 import parseRoute from './lib/parse-route';
-
+import SettingsPage from './components/settings-page';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -28,6 +28,8 @@ export default class App extends React.Component {
       return <HomePage/>;
     } else if (route.path === 'folders') {
       return <FoldersPage/>;
+    } else if (route.path === 'settings') {
+      return <SettingsPage/>;
     } else {
       return <div className='return-not-found'>Uh oh, we could not find the page you were looking for! </div>;
     }
