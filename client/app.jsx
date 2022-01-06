@@ -29,7 +29,7 @@ export default class App extends React.Component {
     } else if (route.path === 'folders') {
       return <FoldersPage/>;
     } else {
-      return <div>Uh oh, we could not find the page you were looking for! </div>;
+      return <div className='return-not-found'>Uh oh, we could not find the page you were looking for! </div>;
     }
   }
 

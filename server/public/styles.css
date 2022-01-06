@@ -10,11 +10,6 @@
   font-size: 29px;
 }
 
-.top-nav-bar,
-.bottom-nav-bar {
-  background-color: #f9c645;
-}
-
 .top-nav-bar {
   height: 20px;
 }
@@ -29,6 +24,7 @@
   right: 0;
   z-index: 33;
   height: 50px;
+  background-color: #f9c645;
 }
 
 .sentence-strip-container {
@@ -168,6 +164,13 @@
 .folders-btn {
   margin-left: 10px;
   opacity: 50%;
+}
+
+.return-not-found {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 22px;
 }
 
 label {
