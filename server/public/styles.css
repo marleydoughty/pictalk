@@ -9,6 +9,12 @@
   align-items: center;
 }
 
+.flex-justify {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .comment-icon {
   color: white;
   padding-left: 3px;
@@ -196,7 +202,7 @@
 }
 
 .background-settings-page {
-  background-image: url("/icons/background-img5.jpeg");
+  background-image: url("/icons/background-img.jpeg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
