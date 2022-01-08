@@ -11,7 +11,7 @@ export default class IconCards extends React.Component {
 
   componentDidMount() {
     const token = window.localStorage.getItem('token');
-    fetch('/api/icons/1', {
+    fetch(`/api/icons/${this.props.folderId || 1}`, {
       headers: {
         'X-Access-Token': token,
         'Content-Type': 'application/json'

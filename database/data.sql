@@ -2,7 +2,7 @@ insert into "users" ( "username", "hashedPassword")
 values ('data2','$argon2i$v=19$m=4096,t=3,p=1$Nhjgyfvhguhjhhjg$');
 
 insert into "folders" ("userId", "name")
-values ('1','default'), ('1','self-help'),('1','food'), ('1','people'), ('1','feelings'),('1','toys'), ('1','animals'), ('1','shapes'), ('1','clothes'), ('1', 'places'), ('1', 'folders-container');
+values ('1','default'), ('1','self-help'),('1','food'), ('1','people'), ('1','feelings'),('1','toys'), ('1','animals'), ('1','shapes'), ('1','clothes'), ('1', 'places');
 
 insert into "icons" ("folderId", "name",  "url")
 values ('1','I','/icons/I.png'),('1','want','/icons/want.png'),('1','help','/icons/help.png'),('1','yes', '/icons/yes.png'),('1','no','/icons/no.png'),
@@ -29,7 +29,4 @@ values ('1','I','/icons/I.png'),('1','want','/icons/want.png'),('1','help','/ico
       ('9','hat','/icons/hat.png'), ('9','beanie','/icons/beanie.png'), ('9','shirt','/icons/shirt.png'),('9','pants','/icons/pants.png'),
       ('9','dress','/icons/dress.png'), ('9','jacket','/icons/jacket.png'), ('9','shoes','/icons/shoes.png'),('9','socks','/icons/socks.png'),
       ('10', 'bathroom','/icons/bathroom.png'),('10', 'bedroom','/icons/bedroom.png'),('10', 'kitchen','/icons/kitchen.png'),('10','living room','/icons/living-room.png'),
-      ('10', 'park','/icons/park.png'),('10', 'school','/icons/school.png'),
-      ('11', 'Self-Care', '/icons/self-care.png'), ('11', 'Food', '/icons/food-folder.png'),('11', 'People', '/icons/people.png'),('11', 'Feelings', '/icons/feelings.png'),
-      ('11', 'Toys', '/icons/toys-folder.png'),('11', 'Animals', '/icons/animals.png'),('11', 'Shapes', '/icons/shapes.png'),('11', 'Clothes', '/icons/clothes.png'),
-      ('11', 'Places', '/icons/places.png');
+      ('10', 'park','/icons/park.png'),('10', 'school','/icons/school.png')
