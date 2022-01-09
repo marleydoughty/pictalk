@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Header from './header';
 export default class AccountInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -54,10 +54,7 @@ export default class AccountInfo extends React.Component {
     const { action } = this.props;
     return (
       <>
-        <div className='header'>
-          <h3>PicTalk</h3>
-          <i className='far fa-comment comment-icon'></i>
-        </div>
+        <Header/>
         <div className='card-container'>
           <form onSubmit={this.handleSubmit}>
             <div className='form-inputs'>
