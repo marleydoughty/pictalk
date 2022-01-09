@@ -2,7 +2,7 @@ insert into "users" ( "username", "hashedPassword")
 values ('data2','$argon2i$v=19$m=4096,t=3,p=1$Nhjgyfvhguhjhhjg$');
 
 insert into "folders" ("userId", "name")
-values ('1','default'), ('1','self-help'),('1','food'), ('1','people'), ('1','feelings'),('1','toys'), ('1','animals'), ('1','shapes'), ('1','clothes'), ('1', 'places');
+values ('1','home'), ('1','self-help'),('1','food'), ('1','people'), ('1','feelings'),('1','toys'), ('1','animals'), ('1','shapes'), ('1','clothes'), ('1', 'places');
 
 insert into "icons" ("folderId", "name",  "url")
 values ('1','I','/icons/I.png'),('1','want','/icons/want.png'),('1','help','/icons/help.png'),('1','yes', '/icons/yes.png'),('1','no','/icons/no.png'),

@@ -35,7 +35,7 @@ export default class FolderItems extends React.Component {
     const allFolders = folders.map(folder => (
       <div key={folder.folderId} onClick={ () => this.openFolder(folder.folderId)}>
         <div className='folders-container'>
-          <i className='far fa-folder'></i>
+          <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/OneDrive_Folder_Icon.svg/2048px-OneDrive_Folder_Icon.svg.png'></img>
           <p>{folder.name}</p>
         </div>
       </div>
