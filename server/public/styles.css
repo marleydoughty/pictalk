@@ -4,6 +4,10 @@
   padding-top: 5px;
 }
 
+.flex-basis {
+  flex-basis: calc(100% / 5);
+}
+
 .flex-center {
   display: flex;
   align-items: center;
