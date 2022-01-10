@@ -81,6 +81,9 @@
 }
 
 .icons-container a {
+  display: flex;
+  flex-basis: 20%;
+  justify-content: center;
   text-decoration: none;
 }
 

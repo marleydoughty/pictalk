@@ -24,6 +24,7 @@ export default class AccountInfo extends React.Component {
   handleSubmit() {
     event.preventDefault();
     const { action } = this.props;
+    const user = this.state.username;
     const req = {
       method: 'POST',
       headers: {
@@ -38,6 +39,7 @@ export default class AccountInfo extends React.Component {
           window.location.hash = 'login';
         } else if (action === 'sign-in') {
           window.localStorage.setItem('token', result.token);
+          window.localStorage.setItem('username', user);
           window.location.hash = 'home-page';
         }
       })
@@ -51,7 +53,6 @@ export default class AccountInfo extends React.Component {
 
   handleGuestLogin(event) {
     event.preventDefault();
-    const user = this.state.username;
     const guestSignIn = {
       username: 'guest',
       password: 'guest'
@@ -67,7 +68,6 @@ export default class AccountInfo extends React.Component {
       .then(res => res.json())
       .then(result => {
         window.localStorage.setItem('token', result.token);
-        window.localStorage.setItem('username', user);
         window.location.hash = 'home-page';
       })
       .catch(err => console.error(err));
