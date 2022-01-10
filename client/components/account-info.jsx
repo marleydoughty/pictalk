@@ -10,6 +10,7 @@ export default class AccountInfo extends React.Component {
     this.usernameChange = this.usernameChange.bind(this);
     this.passwordChange = this.passwordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleGuestLogin = this.handleGuestLogin.bind(this);
   }
 
   usernameChange(event) {
@@ -23,7 +24,6 @@ export default class AccountInfo extends React.Component {
   handleSubmit() {
     event.preventDefault();
     const { action } = this.props;
-    const user = this.state.username;
     const req = {
       method: 'POST',
       headers: {
@@ -38,7 +38,6 @@ export default class AccountInfo extends React.Component {
           window.location.hash = 'login';
         } else if (action === 'sign-in') {
           window.localStorage.setItem('token', result.token);
-          window.localStorage.setItem('username', user);
           window.location.hash = 'home-page';
         }
       })
@@ -48,6 +47,30 @@ export default class AccountInfo extends React.Component {
       username: '',
       password: ''
     });
+  }
+
+  handleGuestLogin(event) {
+    event.preventDefault();
+    const user = this.state.username;
+    const guestSignIn = {
+      username: 'guest',
+      password: 'guest'
+    };
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(guestSignIn)
+    };
+    fetch('/api/auth/sign-in', req)
+      .then(res => res.json())
+      .then(result => {
+        window.localStorage.setItem('token', result.token);
+        window.localStorage.setItem('username', user);
+        window.location.hash = 'home-page';
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -79,7 +102,9 @@ export default class AccountInfo extends React.Component {
               </div>
               <div className='button-container'>
                 <button id='sign-up'>
-                  <a href="sign-up"></a>{action === 'sign-up' ? 'Sign up' : 'Login'}</button>
+                  <a href="sign-up"></a>{action === 'sign-up' ? 'Sign up' : 'Login'}
+                </button>
+                <button id='guest-login' onClick={this.handleGuestLogin}>login as guest</button>
                 <div><span>
                   {action === 'sign-up' ? 'Already a member?' : 'Need an account?'}
                   </span>
