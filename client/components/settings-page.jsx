@@ -1,10 +1,21 @@
 import React from 'react';
 import BottomNavBar from './bottom-nav-bar';
-// import AppContext from '../lib/app-context';
+import decodeToken from '../lib/decode-token';
 
 export default class SettingsPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = ({ username: '' });
+  }
+
+  componentDidMount() {
+    const token = window.localStorage.getItem('token');
+    const userObj = decodeToken(token);
+    this.setState({ username: userObj.username });
+  }
+
   render() {
-    const username = localStorage.getItem('username');
+    const username = this.state.username;
     return (
       <div className='background-settings-page'>
         <div className='card-container'>
@@ -36,4 +47,3 @@ export default class SettingsPage extends React.Component {
     );
   }
 }
-// SettingsPage.contextType = AppContext;

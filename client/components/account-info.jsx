@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './header';
-// import AppContext from '../lib/app-context';
 
 export default class AccountInfo extends React.Component {
   constructor(props) {
@@ -121,4 +120,3 @@ export default class AccountInfo extends React.Component {
     );
   }
 }
-// AccountInfo.contextType = AppContext;

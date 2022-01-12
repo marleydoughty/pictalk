@@ -4,7 +4,6 @@ import AccountInfo from './components/account-info';
 import FoldersPage from './components/folders-page';
 import parseRoute from './lib/parse-route';
 import SettingsPage from './components/settings-page';
-// import AppContext from './lib/app-context';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -20,7 +19,7 @@ export default class App extends React.Component {
     });
   }
 
-  renderPage() {
+  render() {
     const { route } = this.state;
     if (route.path === 'login' || route.path === '') {
       return <AccountInfo action="sign-in" />;
@@ -36,17 +35,5 @@ export default class App extends React.Component {
     } else {
       return <div className='return-not-found'>Uh oh, we could not find the page you were looking for! </div>;
     }
-  }
-
-  render() {
-    // const { username } = this.state;
-    // const contextValue = { username };
-    return (
-    // <AppContext.Provider value={contextValue}>
-        <>
-          {this.renderPage()};
-        </>
-    // </AppContext.Provider>
-    );
   }
 }
