@@ -1,5 +1,6 @@
 import React from 'react';
 import BottomNavBar from './bottom-nav-bar';
+// import AppContext from '../lib/app-context';
 
 export default class SettingsPage extends React.Component {
   render() {
@@ -35,3 +36,4 @@ export default class SettingsPage extends React.Component {
     );
   }
 }
+// SettingsPage.contextType = AppContext;

@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from './header';
+// import AppContext from '../lib/app-context';
+
 export default class AccountInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -95,7 +97,7 @@ export default class AccountInfo extends React.Component {
                  <label>Password
                    <input id="password"
                    type="password"
-                   placeholder="*******"
+                   placeholder="password"
                    value={this.state.password}
                    onChange={this.passwordChange}></input>
                 </label>
@@ -119,3 +121,4 @@ export default class AccountInfo extends React.Component {
     );
   }
 }
+// AccountInfo.contextType = AppContext;

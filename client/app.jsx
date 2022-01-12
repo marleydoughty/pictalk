@@ -4,6 +4,7 @@ import AccountInfo from './components/account-info';
 import FoldersPage from './components/folders-page';
 import parseRoute from './lib/parse-route';
 import SettingsPage from './components/settings-page';
+// import AppContext from './lib/app-context';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -38,10 +39,14 @@ export default class App extends React.Component {
   }
 
   render() {
+    // const { username } = this.state;
+    // const contextValue = { username };
     return (
+    // <AppContext.Provider value={contextValue}>
         <>
           {this.renderPage()};
         </>
+    // </AppContext.Provider>
     );
   }
 }
