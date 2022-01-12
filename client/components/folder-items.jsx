@@ -31,7 +31,7 @@ export default class FolderItems extends React.Component {
       <a href={`#home-page?folderId=${folder.folderId}`} key={folder.folderId}>
         <div className='flex-basis' >
           <div className='folders-container'>
-            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/OneDrive_Folder_Icon.svg/2048px-OneDrive_Folder_Icon.svg.png'></img>
+            <img src='/icons/folder-icon.png'></img>
             <p>{folder.name}</p>
           </div>
         </div>
