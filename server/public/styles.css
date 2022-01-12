@@ -1,22 +1,28 @@
 .header {
   display: flex;
-  background-color: #f9c645;
+  background-color: #3498da;
   padding-top: 5px;
+}
+
+.flex-basis {
+  flex-basis: calc(100% / 5);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-justify {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .comment-icon {
   color: white;
   padding-left: 3px;
   font-size: 29px;
-}
-
-.top-nav-bar,
-.bottom-nav-bar {
-  background-color: #f9c645;
-}
-
-.top-nav-bar {
-  height: 20px;
 }
 
 .bottom-nav-bar {
@@ -29,6 +35,7 @@
   right: 0;
   z-index: 33;
   height: 50px;
+  background-color: #3498da;
 }
 
 .sentence-strip-container {
@@ -73,6 +80,13 @@
   object-fit: contain;
 }
 
+.icons-container a {
+  display: flex;
+  flex-basis: 20%;
+  justify-content: center;
+  text-decoration: none;
+}
+
 .card-container {
   border-radius: 5px;
   display: flex;
@@ -86,13 +100,15 @@
   right: 0;
 }
 
-.form-inputs {
+.form-inputs,
+.card-content {
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 25px 15px;
+  padding: 0 15px 25px;
   align-items: center;
   border-radius: 6px;
+  box-shadow: 1px 1px 4px 1px grey;
 }
 
 .password,
@@ -102,13 +118,13 @@
 }
 
 #sign-up {
-  background-color: #f9c645;
+  background-color: #3498da;
   width: 225px;
   height: 35px;
   border-radius: 30px;
   border: none;
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   font-size: 18px;
 }
 
@@ -118,6 +134,14 @@
   color: #ee6e72;
   margin-top: 20px;
   font-size: 15px;
+}
+
+#guest-login {
+  margin-bottom: 20px;
+  border: none;
+  font-size: 14px;
+  background-color: white;
+  text-decoration: underline;
 }
 
 .button-container {
@@ -155,9 +179,66 @@
   margin-right: 10px;
 }
 
-.home-button {
+.home-button,
+.folders-btn,
+.settings-btn {
   color: white;
   font-size: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.folders-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.folders-container p {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.opacity {
+  opacity: 50%;
+}
+
+.return-not-found {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 22px;
+}
+
+.settings-header {
+  font-size: 20px;
+}
+
+.settings-section h4 {
+  margin: 0;
+}
+
+.settings-section p {
+  font-size: 16px;
+}
+
+.flex-center h4 {
+  margin-left: 5px;
+  font-size: 18px;
+}
+
+.background-settings-page {
+  background-image: linear-gradient(109.6deg, rgba(204, 228, 247, 1) 11.2%, rgba(237, 246, 250, 1) 100.2%);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: 150vh;
 }
 
 label {

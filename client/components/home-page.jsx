@@ -1,6 +1,7 @@
 import React from 'react';
 import IconCards from './icon-cards';
 import SentenceStrip from './sentence-strip';
+import BottomNavBar from './bottom-nav-bar';
 
 export default class HomePage extends React.Component {
   constructor(props) {
@@ -30,11 +31,9 @@ export default class HomePage extends React.Component {
         <div className='top-nav-bar'></div>
         <SentenceStrip handleDelete={this.handleDelete} words={this.state.icons}/>
         <div className='icons-container'>
-          <IconCards onClickIcon={this.onClickIcon} />
+          <IconCards onClickIcon={this.onClickIcon} folderId={this.props.folderId} />
         </div>
-        <div className='bottom-nav-bar'>
-          <a href='#home=page'><i className='fas fa-home home-button'></i></a>
-        </div>
+        <BottomNavBar/>
       </div>
     );
   }
