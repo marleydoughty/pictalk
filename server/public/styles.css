@@ -245,6 +245,11 @@
   margin-top: 25px;
   width: 91px;
   height: 42px;
+  border: none;
+}
+
+.return-not-found button:hover {
+  background-color: rgb(19, 124, 185);
 }
 
 .rtn-home-btn {
