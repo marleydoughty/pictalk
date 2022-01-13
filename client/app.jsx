@@ -33,7 +33,13 @@ export default class App extends React.Component {
     } else if (route.path === 'settings') {
       return <SettingsPage/>;
     } else {
-      return <div className='return-not-found'>Uh oh, we could not find the page you were looking for! </div>;
+      return (
+      <div className='return-not-found'>
+          <p>Uh oh, we could not find the page you were looking for!<br />
+            <button><a href='#home-page' className='rtn-home-btn'>Home</a></button>
+          </p>
+      </div>
+      );
     }
   }
 }
