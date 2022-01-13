@@ -177,6 +177,7 @@
 .delete-btn {
   font-size: 24px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .home-button,
@@ -201,6 +202,12 @@
   margin: 0;
   text-transform: uppercase;
   font-size: 20px;
+  color: black;
+}
+
+.folders-container:hover {
+  background-color: lightgrey;
+  border-radius: 6px;
 }
 
 .opacity {
