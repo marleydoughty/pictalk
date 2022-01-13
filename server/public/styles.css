@@ -68,10 +68,11 @@
   padding: 4px;
   border: solid;
   border-radius: 10px;
+  cursor: pointer;
 }
 
-.icon-card :hover {
-  cursor: pointer;
+.icon-card:hover {
+  background-color: lightgray;
 }
 
 .icon-card p {
