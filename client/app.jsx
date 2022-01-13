@@ -4,6 +4,7 @@ import AccountInfo from './components/account-info';
 import FoldersPage from './components/folders-page';
 import parseRoute from './lib/parse-route';
 import SettingsPage from './components/settings-page';
+import NotFoundPage from './components/not-found-page';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -33,13 +34,7 @@ export default class App extends React.Component {
     } else if (route.path === 'settings') {
       return <SettingsPage/>;
     } else {
-      return (
-      <div className='return-not-found'>
-          <p>Uh oh, we could not find the page you were looking for!<br />
-            <button><a href='#home-page' className='rtn-home-btn'>Home</a></button>
-          </p>
-      </div>
-      );
+      return <NotFoundPage/>;
     }
   }
 }
