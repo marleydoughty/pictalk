@@ -1,10 +1,10 @@
 import React from 'react';
-import HomePage from './components/home-page';
+import HomePage from './pages/home-page';
 import AccountInfo from './components/account-info';
-import FoldersPage from './components/folders-page';
+import FoldersPage from './pages/folders-page';
 import parseRoute from './lib/parse-route';
-import SettingsPage from './components/settings-page';
-import NotFoundPage from './components/not-found-page';
+import SettingsPage from './pages/settings-page';
+import NotFoundPage from './pages/not-found-page';
 
 export default class App extends React.Component {
   constructor(props) {

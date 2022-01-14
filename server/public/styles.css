@@ -4,10 +4,6 @@
   padding-top: 5px;
 }
 
-.opacity {
-  opacity: 50%;
-}
-
 .flex-basis {
   flex-basis: calc(100% / 5);
 }
@@ -26,7 +22,7 @@
 .comment-icon {
   color: white;
   padding-left: 3px;
-  font-size: 29px;
+  font-size: 28px;
 }
 
 .bottom-nav-bar {
@@ -38,14 +34,14 @@
   left: 0;
   right: 0;
   z-index: 33;
-  height: 50px;
+  height: 48px;
   background-color: #3498da;
 }
 
 .sentence-strip-container {
   background-color: white;
   border-radius: 5px;
-  height: 115px;
+  height: 7.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,31 +54,12 @@
 .icons-container {
   display: flex;
   flex-wrap: wrap;
-}
-
-.icon-card {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 13%;
-  align-items: center;
-  margin: 5px;
-  padding: 4px;
-  border: solid;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.icon-card:hover {
-  background-color: lightgray;
-}
-
-.icon-card p {
-  margin: 0;
+  justify-content: center;
 }
 
 .icons-container img {
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
   object-fit: contain;
 }
 
@@ -93,10 +70,29 @@
   text-decoration: none;
 }
 
+.icon-card {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 13%;
+  align-items: center;
+  margin: 5px;
+  padding: 0.25rem;
+  border: solid;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.icon-card p {
+  margin: 0;
+}
+
+.icon-card:hover {
+  background-color: lightgray;
+}
+
 .card-container {
   border-radius: 5px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -125,13 +121,14 @@
 
 #sign-up {
   background-color: #3498da;
-  width: 225px;
-  height: 35px;
-  border-radius: 30px;
+  width: 14rem;
+  height: 36px;
+  border-radius: 18px;
   border: none;
   color: white;
   margin-bottom: 5px;
   font-size: 18px;
+  cursor: pointer;
 }
 
 #login {
@@ -139,7 +136,8 @@
   background-color: white;
   color: #ee6e72;
   margin-top: 20px;
-  font-size: 15px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 #guest-login {
@@ -148,16 +146,13 @@
   font-size: 14px;
   background-color: white;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .button-container {
   display: flex;
   flex-direction: column;
-  margin-top: 33px;
-}
-
-.button-container :hover {
-  cursor: pointer;
+  margin-top: 36px;
 }
 
 .buttons-container {
@@ -166,8 +161,9 @@
 }
 
 .play-btn-container {
-  margin-left: 6px;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
+  border: none;
+  background-color: white;
 }
 
 .play-btn {
@@ -177,7 +173,8 @@
 }
 
 .delete-btn-container {
-  margin-right: 10px;
+  border: none;
+  background-color: white;
 }
 
 .delete-btn {
@@ -190,7 +187,7 @@
 .folders-btn,
 .settings-btn {
   color: white;
-  font-size: 30px;
+  font-size: 32px;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -199,7 +196,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100px;
+  width: 6.25rem;
   cursor: pointer;
   margin: 10px;
 }
@@ -242,9 +239,9 @@
   font-size: 20px;
   border-radius: 7px;
   background-color: #3498da;
-  margin-top: 25px;
-  width: 91px;
-  height: 42px;
+  margin-top: 24px;
+  width: 6.25rem;
+  height: 2.5rem;
   border: none;
 }
 
@@ -287,8 +284,8 @@
 .is-loading {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
-  font-size: 30px;
+  margin-top: 6.25rem;
+  font-size: 32px;
 }
 
 label {
@@ -299,8 +296,8 @@ label {
 }
 
 input {
-  width: 250px;
-  height: 35px;
+  width: 15.5rem;
+  height: 2.25rem;
   border-radius: 5px;
   border-width: thin;
 }

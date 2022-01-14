@@ -1,7 +1,7 @@
 import React from 'react';
-import IconCards from './icon-cards';
-import SentenceStrip from './sentence-strip';
-import BottomNavBar from './bottom-nav-bar';
+import IconCards from '../components/icon-cards';
+import SentenceStrip from '../components/sentence-strip';
+import BottomNavBar from '../components/bottom-nav-bar';
 
 export default class HomePage extends React.Component {
   constructor(props) {
@@ -28,7 +28,6 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <div className='home-page-container'>
-        <div className='top-nav-bar'></div>
         <SentenceStrip handleDelete={this.handleDelete} words={this.state.icons}/>
         <div className='icons-container'>
           <IconCards onClickIcon={this.onClickIcon} folderId={this.props.folderId} />

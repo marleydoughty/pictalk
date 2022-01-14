@@ -1,5 +1,5 @@
 import React from 'react';
-import BottomNavBar from './bottom-nav-bar';
+import BottomNavBar from '../components/bottom-nav-bar';
 import decodeToken from '../lib/decode-token';
 
 export default class SettingsPage extends React.Component {

@@ -1,7 +1,7 @@
 import React from 'react';
-import BottomNavBar from './bottom-nav-bar';
-import FolderItems from './folder-items';
-import Header from './header';
+import BottomNavBar from '../components/bottom-nav-bar';
+import FolderItems from '../components/folder-items';
+import Header from '../components/header';
 
 export default class FoldersPage extends React.Component {
 
