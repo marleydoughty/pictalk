@@ -166,8 +166,9 @@
 }
 
 .play-btn-container {
-  margin-left: 6px;
   margin-bottom: 15px;
+  border: none;
+  background-color: white;
 }
 
 .play-btn {
@@ -177,7 +178,8 @@
 }
 
 .delete-btn-container {
-  margin-right: 10px;
+  border: none;
+  background-color: white;
 }
 
 .delete-btn {

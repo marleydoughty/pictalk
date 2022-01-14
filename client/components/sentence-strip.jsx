@@ -22,12 +22,12 @@ const SentenceStrip = props => {
         {allIcons}
       </div>
       <div className='buttons-container'>
-        <div onClick={handleSpeak} className='play-btn-container'>
+        <button onClick={handleSpeak} className='play-btn-container'>
           <i className='fas fa-play play-btn'></i>
-        </div>
-        <div onClick={props.handleDelete}className='delete-btn-container'>
+        </button>
+        <button onClick={props.handleDelete}className='delete-btn-container'>
           <i className='fas fa-backspace delete-btn'></i>
-        </div>
+        </button>
       </div>
     </div>
   );
