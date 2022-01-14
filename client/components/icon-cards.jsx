@@ -5,7 +5,8 @@ export default class IconCards extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
-      icons: []
+      icons: [],
+      isLoading: true
     });
   }
 
@@ -20,7 +21,8 @@ export default class IconCards extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          icons: data
+          icons: data,
+          isLoading: false
         });
       })
       .catch(err => console.error('Unexpected error occured', err));
@@ -32,7 +34,10 @@ export default class IconCards extends React.Component {
       <IconCardItem icon={icon} onClick={() => this.props.onClickIcon(icon)} key={icon.iconId} />
     ));
     return (
-      <>{allIcons}</>
+      <>
+        {this.state.isLoading && <div className='is-loading'>...Loading</div>}
+        {allIcons}
+      </>
     );
   }
 }

@@ -4,7 +4,8 @@ export default class FolderItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
-      folders: []
+      folders: [],
+      isLoading: true
     });
   }
 
@@ -19,7 +20,8 @@ export default class FolderItems extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          folders: data
+          folders: data,
+          isLoading: false
         });
       })
       .catch(err => console.error('Unexpected error occured', err));
@@ -38,7 +40,10 @@ export default class FolderItems extends React.Component {
       </a>
     ));
     return (
-      <>{allFolders}</>
+      <>
+        {this.state.isLoading && <div className='is-loading'>...Loading</div>}
+        {allFolders}
+      </>
     );
   }
 }
