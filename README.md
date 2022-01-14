@@ -23,6 +23,7 @@ Take a look for yourself and let me know your thoughts! [https://pic-talk.heroku
 
 ### Preview
 
+![pictalk demo](images/pictalk-demo.gif)
 
 ### Features
 
@@ -31,7 +32,7 @@ Take a look for yourself and let me know your thoughts! [https://pic-talk.heroku
 - Users can delete icons from the sentence strip
 - Users can play a constructed sentence
 - Users can view a 'Folders' page that organizes icons by category
-- Users can view a settings page that gives account info and logout abilities
+- Users can view a Settings page that gives account info and logout abilities
 
 ### Proposed features
 
