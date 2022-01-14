@@ -28,7 +28,6 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <div className='home-page-container'>
-        <div className='top-nav-bar'></div>
         <SentenceStrip handleDelete={this.handleDelete} words={this.state.icons}/>
         <div className='icons-container'>
           <IconCards onClickIcon={this.onClickIcon} folderId={this.props.folderId} />
