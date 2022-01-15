@@ -23,7 +23,7 @@ Take a look for yourself and let me know your thoughts! [https://pic-talk.heroku
 
 ### Preview
 
-![pictalk demo](images/pictalk-demo.gif)
+![pictalk demo](server/public/images/pictalk-demo.gif)
 
 ### Features
 
