@@ -11,7 +11,7 @@ module.exports = {
   entry: clientPath,
   output: {
     path: serverPublicPath,
-    filename: 'main.js' // ADD THIS LINE - explicitly set the output filename
+    filename: 'main.js'
   },
   module: {
     rules: [
