@@ -1,49 +1,106 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+  Box,
+  CircularProgress,
+  Alert
+} from '@mui/material';
+import { api } from '../lib/api';
 
-export default class FolderItems extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = ({
-      folders: [],
-      isLoading: true
-    });
-  }
+export default function FolderItems() {
+  const [folders, setFolders] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  componentDidMount() {
-    const token = window.localStorage.getItem('token');
-    fetch('/api/folders', {
-      headers: {
-        'X-Access-Token': token,
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.json())
+  useEffect(() => {
+    api
+      .getFolders()
       .then(data => {
-        this.setState({
-          folders: data,
-          isLoading: false
-        });
+        setFolders(data);
+        setIsLoading(false);
       })
-      .catch(err => console.error('Unexpected error occured', err));
-  }
+      .catch(err => {
+        setError(err.message);
+        setIsLoading(false);
+        console.error('Error fetching folders:', err);
+      });
+  }, []);
 
-  render() {
-    const folders = this.state.folders;
-    const allFolders = folders.map(folder => (
-      <a href={`#home-page?folderId=${folder.folderId}`} key={folder.folderId}>
-        <div className='flex-basis' >
-          <div className='folders-container'>
-            <img src='/icons/folder-icon.png'></img>
-            <p>{folder.name}</p>
-          </div>
-        </div>
-      </a>
-    ));
+  if (isLoading) {
     return (
-      <>
-        {this.state.isLoading && <div className='is-loading'>...Loading</div>}
-        {allFolders}
-      </>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '200px',
+          width: '100%'
+        }}
+      >
+        <CircularProgress size={60} />
+      </Box>
     );
   }
+
+  if (error) {
+    return (
+      <Box sx={{ width: '100%', px: 2 }}>
+        <Alert severity="error">Error: {error}</Alert>
+      </Box>
+    );
+  }
+
+  return (
+    <>
+      {folders.map(folder => (
+        <Link
+          to={`/home?folderId=${folder.folderId}`}
+          key={folder.folderId}
+          style={{ textDecoration: 'none' }}
+        >
+          <Card
+            sx={{
+              width: 140,
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                transform: 'translateY(-4px)',
+                boxShadow: 6
+              }
+            }}
+          >
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="100"
+                image="/icons/folder-icon.png"
+                alt={folder.name}
+                sx={{
+                  objectFit: 'contain',
+                  p: 2
+                }}
+              />
+              <CardContent sx={{ textAlign: 'center', py: 1.5 }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    color: 'text.primary',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  {folder.name}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Link>
+      ))}
+    </>
+  );
 }

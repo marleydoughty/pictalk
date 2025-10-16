@@ -1,120 +1,162 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import {
+  Container,
+  Box,
+  Card,
+  CardContent,
+  TextField,
+  Button,
+  Typography,
+  Alert,
+  CircularProgress,
+  Link,
+  Stack,
+  Divider
+} from '@mui/material';
+import { api } from '../lib/api';
 import Header from './header';
 
-export default class AccountInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = ({
-      username: '',
-      password: ''
-    });
-    this.usernameChange = this.usernameChange.bind(this);
-    this.passwordChange = this.passwordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleGuestLogin = this.handleGuestLogin.bind(this);
-  }
+export default function AccountInfo({ action }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  usernameChange(event) {
-    this.setState({ username: event.target.value });
-  }
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setError('');
+    setIsLoading(true);
 
-  passwordChange(event) {
-    this.setState({ password: event.target.value });
-  }
+    try {
+      const authMethod = action === 'sign-up' ? api.signUp : api.signIn;
+      const result = await authMethod({ username, password });
 
-  handleSubmit() {
-    event.preventDefault();
-    const { action } = this.props;
-    const req = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    };
-    fetch(`/api/auth/${action}`, req)
-      .then(res => res.json())
-      .then(result => {
-        if (action === 'sign-up') {
-          window.location.hash = 'login';
-        } else if (action === 'sign-in') {
-          window.localStorage.setItem('token', result.token);
-          window.location.hash = 'home-page';
-        }
-      })
-      .catch(err => console.error(err));
+      if (action === 'sign-up') {
+        navigate('/login');
+      } else {
+        localStorage.setItem('token', result.token);
+        navigate('/home');
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    this.setState({
-      username: '',
-      password: ''
-    });
-  }
+  const handleGuestLogin = async e => {
+    e.preventDefault();
+    setError('');
+    setIsLoading(true);
 
-  handleGuestLogin(event) {
-    event.preventDefault();
-    const guestSignIn = {
-      username: 'guest',
-      password: 'guest'
-    };
-    const req = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(guestSignIn)
-    };
-    fetch('/api/auth/sign-in', req)
-      .then(res => res.json())
-      .then(result => {
-        window.localStorage.setItem('token', result.token);
-        window.location.hash = 'home-page';
-      })
-      .catch(err => console.error(err));
-  }
+    try {
+      const result = await api.signIn({ username: 'guest', password: 'guest' });
+      localStorage.setItem('token', result.token);
+      navigate('/home');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  render() {
-    const { action } = this.props;
-    return (
-      <>
-        <Header/>
-        <div className='card-container'>
-          <form onSubmit={this.handleSubmit}>
-            <div className='form-inputs'>
-              <h2>{action === 'sign-up' ? 'Sign up' : 'Welcome back!'}</h2>
-              <div className='username'>
-                 <label>Username
-                   <input id="username"
-                    type="text"
-                    placeholder="Username"
-                    value={this.state.username}
-                    onChange={this.usernameChange}></input>
-                 </label>
-               </div>
-               <div className='password'>
-                 <label>Password
-                   <input id="password"
-                   type="password"
-                   placeholder="password"
-                   value={this.state.password}
-                   onChange={this.passwordChange}></input>
-                </label>
-              </div>
-              <div className='button-container'>
-                <button id='sign-up'>
-                  <a href="sign-up"></a>{action === 'sign-up' ? 'Sign up' : 'Login'}
-                </button>
-                <button id='guest-login' onClick={this.handleGuestLogin}>login as guest</button>
-                <div><span>
-                  {action === 'sign-up' ? 'Already a member?' : 'Need an account?'}
-                  </span>
-                  <a href={action === 'sign-in' ? '#sign-up' : '#login'} id='login'>
-                    {action === 'sign-in' ? 'Sign up' : 'Login'}</a>
-                  </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </>
-    );
-  }
+  return (
+    <>
+      <Container maxWidth="sm" sx={{ mt: 8 }}>
+        <Header />
+
+        <Card elevation={3}>
+          <CardContent sx={{ p: 4 }}>
+            <Typography variant="h4" component="h2" align="center" gutterBottom>
+              {action === 'sign-up' ? 'Sign Up' : 'Welcome Back!'}
+            </Typography>
+
+            {error && (
+              <Alert severity="error" sx={{ mb: 2 }}>
+                {error}
+              </Alert>
+            )}
+
+            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+              <Stack spacing={3}>
+                <TextField
+                  fullWidth
+                  label="Username"
+                  variant="outlined"
+                  value={username}
+                  onChange={e => setUsername(e.target.value)}
+                  required
+                  disabled={isLoading}
+                  autoComplete="username"
+                />
+
+                <TextField
+                  fullWidth
+                  label="Password"
+                  type="password"
+                  variant="outlined"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  required
+                  disabled={isLoading}
+                  autoComplete="current-password"
+                />
+
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="large"
+                  fullWidth
+                  disabled={isLoading}
+                  sx={{ py: 1.5 }}
+                >
+                  {isLoading
+                    ? (
+                    <CircularProgress size={24} color="inherit" />
+                      )
+                    : action === 'sign-up'
+                      ? (
+                          'Sign Up'
+                        )
+                      : (
+                          'Login'
+                        )}
+                </Button>
+
+                <Divider>OR</Divider>
+
+                <Button
+                  variant="outlined"
+                  size="large"
+                  fullWidth
+                  onClick={handleGuestLogin}
+                  disabled={isLoading}
+                  sx={{ py: 1.5 }}
+                >
+                  Login as Guest
+                </Button>
+
+                <Box sx={{ textAlign: 'center', mt: 2 }}>
+                  <Typography variant="body2" color="text.secondary">
+                    {action === 'sign-up'
+                      ? 'Already a member?'
+                      : 'Need an account?'}{' '}
+                    <Link
+                      component={RouterLink}
+                      to={action === 'sign-in' ? '/sign-up' : '/login'}
+                      underline="hover"
+                    >
+                      {action === 'sign-in' ? 'Sign Up' : 'Login'}
+                    </Link>
+                  </Typography>
+                </Box>
+              </Stack>
+            </Box>
+          </CardContent>
+        </Card>
+      </Container>
+    </>
+  );
 }

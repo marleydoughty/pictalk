@@ -1,39 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { Box, Container } from '@mui/material';
 import IconCards from '../components/icon-cards';
 import SentenceStrip from '../components/sentence-strip';
 import BottomNavBar from '../components/bottom-nav-bar';
 
-export default class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      icons: []
-    };
-    this.onClickIcon = this.onClickIcon.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
+export default function HomePage() {
+  const [icons, setIcons] = useState([]);
+  const [searchParams] = useSearchParams();
+  const folderId = searchParams.get('folderId');
 
-  onClickIcon(icon) {
-    this.setState({ icons: [...this.state.icons, icon] });
-  }
+  const onClickIcon = icon => {
+    setIcons([...icons, icon]);
+  };
 
-  handleDelete() {
-    const words = this.state.icons;
-    const sentence = words.filter((element, index) => {
-      return index < words.length - 1;
+  const handleDelete = () => {
+    const sentence = icons.filter((element, index) => {
+      return index < icons.length - 1;
     });
-    this.setState({ icons: sentence });
-  }
+    setIcons(sentence);
+  };
 
-  render() {
-    return (
-      <div className='home-page-container'>
-        <SentenceStrip handleDelete={this.handleDelete} words={this.state.icons}/>
-        <div className='icons-container'>
-          <IconCards onClickIcon={this.onClickIcon} folderId={this.props.folderId} />
-        </div>
-        <BottomNavBar/>
-      </div>
-    );
-  }
+  return (
+    <Box
+      sx={{
+        minHeight: '100vh',
+        backgroundColor: '#f5f5f5',
+        paddingTop: 4,
+        paddingBottom: '80px'
+      }}
+    >
+      <Container
+        maxWidth="lg"
+        sx={{
+          pt: 2,
+          pb: 2
+        }}
+      >
+        {/* Sentence Strip Section */}
+        <Box sx={{ mb: 3 }}>
+          <SentenceStrip handleDelete={handleDelete} words={icons} />
+        </Box>
+
+        {/* Icons Grid Section */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            gap: 1
+          }}
+        >
+          <IconCards onClickIcon={onClickIcon} folderId={folderId} />
+        </Box>
+      </Container>
+
+      <BottomNavBar />
+    </Box>
+  );
 }

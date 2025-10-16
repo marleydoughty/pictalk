@@ -1,5 +1,6 @@
 require('dotenv/config');
 const express = require('express');
+const path = require('path'); // ADD THIS LINE
 const authorizationMiddleware = require('./authorization-middleware');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
@@ -96,6 +97,10 @@ app.get('/api/folders', (req, res, next) => {
 });
 
 app.use(errorMiddleware);
+// Catch-all route for React Router - ADD THESE LINES
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
