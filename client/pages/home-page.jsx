@@ -11,39 +11,58 @@ const MAX_RECENT_ICONS = 10;
 export default function HomePage() {
   const [icons, setIcons] = useState([]);
   const [recentIcons, setRecentIcons] = useState([]);
+  const [autoSpeak, setAutoSpeak] = useState(false);
+  const [speechRate, setSpeechRate] = useState(0.9);
   const [searchParams] = useSearchParams();
   const folderId = searchParams.get('folderId');
 
-  // Load recently used icons from localStorage on mount
   useEffect(() => {
-    const stored = localStorage.getItem('recentIcons');
-    if (stored) {
+    const storedRecent = localStorage.getItem('recentIcons');
+    const storedAutoSpeak = localStorage.getItem('autoSpeak');
+    const storedSpeechRate = localStorage.getItem('speechRate');
+
+    if (storedRecent) {
       try {
-        setRecentIcons(JSON.parse(stored));
+        setRecentIcons(JSON.parse(storedRecent));
       } catch (err) {
         console.error('Error loading recent icons:', err);
       }
     }
+
+    if (storedAutoSpeak) {
+      setAutoSpeak(storedAutoSpeak === 'true');
+    }
+
+    if (storedSpeechRate) {
+      setSpeechRate(parseFloat(storedSpeechRate));
+    }
   }, []);
 
-  // Save recently used icons to localStorage whenever they change
+  // Save to localStorage
   useEffect(() => {
     if (recentIcons.length > 0) {
       localStorage.setItem('recentIcons', JSON.stringify(recentIcons));
     }
   }, [recentIcons]);
 
+  const speakWord = word => {
+    const textToSpeak = word.name.length === 1 ? `${word.name}.` : word.name;
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    utterance.lang = 'en-US';
+    utterance.rate = speechRate;
+    window.speechSynthesis.speak(utterance);
+  };
+
   const onClickIcon = icon => {
-    // Add to sentence
     setIcons([...icons, icon]);
 
-    // Add to recently used (avoid duplicates, keep most recent)
+    if (autoSpeak) {
+      speakWord(icon);
+    }
+
     setRecentIcons(prev => {
-      // Remove if already exists
       const filtered = prev.filter(i => i.iconId !== icon.iconId);
-      // Add to front
       const updated = [icon, ...filtered];
-      // Keep only the most recent MAX_RECENT_ICONS
       return updated.slice(0, MAX_RECENT_ICONS);
     });
   };

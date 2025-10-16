@@ -1,29 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Paper, Box, IconButton, Tooltip } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CloseIcon from '@mui/icons-material/Close';
 import IconCardItem from './icon-card-item';
 
 const SentenceStrip = ({ words, handleDelete, handleClearAll }) => {
+  const [speechRate, setSpeechRate] = useState(0.9);
+
+  useEffect(() => {
+    const savedRate = localStorage.getItem('speechRate');
+    if (savedRate) {
+      setSpeechRate(parseFloat(savedRate));
+    }
+  }, []);
+
   const handleSpeakSentence = () => {
     if (words.length === 0) return;
 
     const sentence = words.map(word => word.name).join(' ');
     const utterance = new SpeechSynthesisUtterance(sentence);
     utterance.lang = 'en-US';
-    utterance.rate = 0.9; // Slightly slower for clarity
+    utterance.rate = speechRate;
     window.speechSynthesis.speak(utterance);
   };
 
   const handleSpeakWord = (word, event) => {
-    // Stop event from bubbling up to the sentence strip click handler
     event.stopPropagation();
 
-    // For single letters, add context to make it speak naturally
     const textToSpeak = word.name.length === 1 ? `${word.name}.` : word.name;
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = 'en-US';
-    utterance.rate = 0.9; // Slightly slower for clarity
+    utterance.rate = speechRate;
     window.speechSynthesis.speak(utterance);
   };
 
@@ -59,7 +66,6 @@ const SentenceStrip = ({ words, handleDelete, handleClearAll }) => {
         gap: 2
       }}
     >
-      {/* Clickable Icons Display Area */}
       <Box
         onClick={handleSpeakSentence}
         sx={{
@@ -106,7 +112,6 @@ const SentenceStrip = ({ words, handleDelete, handleClearAll }) => {
             )}
       </Box>
 
-      {/* Action Buttons */}
       <Box
         sx={{
           display: 'flex',
