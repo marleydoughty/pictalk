@@ -1,6 +1,6 @@
 require('dotenv/config');
 const express = require('express');
-const path = require('path'); // ADD THIS LINE
+const path = require('path');
 const authorizationMiddleware = require('./authorization-middleware');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
@@ -21,6 +21,7 @@ const db = new pg.Pool({
 app.use(jsonMiddleware);
 app.use(staticMiddleware);
 
+// Public auth routes
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -78,7 +79,8 @@ app.post('/api/auth/sign-in', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.use(authorizationMiddleware);
+// Protected routes - require authentication
+app.use('/api', authorizationMiddleware); // Only protect /api routes
 
 app.get('/api/icons/:folderId', (req, res, next) => {
   const folderId = req.params.folderId;
@@ -97,6 +99,8 @@ app.get('/api/folders', (req, res, next) => {
 });
 
 app.use(errorMiddleware);
+
+// Catch-all route for React Router (must be AFTER API routes but BEFORE requiring auth)
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
