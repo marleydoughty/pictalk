@@ -10,7 +10,8 @@ module.exports = {
   },
   entry: clientPath,
   output: {
-    path: serverPublicPath
+    path: serverPublicPath,
+    filename: 'main.js' // ADD THIS LINE - explicitly set the output filename
   },
   module: {
     rules: [
