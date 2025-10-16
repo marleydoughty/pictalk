@@ -10,7 +10,10 @@ export default function FoldersPage() {
         minHeight: '100vh',
         backgroundColor: '#f5f5f5',
         paddingTop: 4,
-        paddingBottom: '80px'
+        paddingBottom: '80px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}
     >
       <Container

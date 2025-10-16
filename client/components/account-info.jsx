@@ -63,12 +63,26 @@ export default function AccountInfo({ action }) {
   };
 
   return (
-    <>
-      <Container maxWidth="sm" sx={{ mt: 8 }}>
-        <Header />
+    <Box
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #667eea15 0%, #764ba215 100%)'
+      }}
+    >
+      <Container
+        maxWidth="sm"
+        sx={{ flex: 1, display: 'flex', alignItems: 'center', py: 4 }}
+      >
+        <Card elevation={3} sx={{ width: '100%' }}>
+          <Header />
 
-        <Card elevation={3}>
           <CardContent sx={{ p: 4 }}>
+            {/* Header inside the card */}
+
             <Typography variant="h4" component="h2" align="center" gutterBottom>
               {action === 'sign-up' ? 'Sign Up' : 'Welcome Back!'}
             </Typography>
@@ -157,6 +171,6 @@ export default function AccountInfo({ action }) {
           </CardContent>
         </Card>
       </Container>
-    </>
+    </Box>
   );
 }

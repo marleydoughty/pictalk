@@ -12,13 +12,13 @@ import NotFoundPage from './pages/not-found-page';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#667eea', // Purple from header gradient
+      main: '#667eea',
       light: '#8b9cf9',
       dark: '#4c5ed4',
       contrastText: '#fff'
     },
     secondary: {
-      main: '#764ba2', // Darker purple from header gradient
+      main: '#764ba2',
       light: '#9b6ec7',
       dark: '#5a3a7a',
       contrastText: '#fff'

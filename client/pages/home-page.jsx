@@ -83,7 +83,10 @@ export default function HomePage() {
       sx={{
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #667eea15 0%, #764ba215 100%)',
-        paddingBottom: '80px'
+        paddingBottom: '80px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}
     >
       <Container maxWidth="xl" sx={{ py: 2 }}>

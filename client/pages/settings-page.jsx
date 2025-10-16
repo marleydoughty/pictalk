@@ -86,7 +86,10 @@ export default function SettingsPage() {
         background:
           'linear-gradient(109.6deg, rgba(204, 228, 247, 1) 11.2%, rgba(237, 246, 250, 1) 100.2%)',
         paddingTop: 3,
-        paddingBottom: '80px'
+        paddingBottom: '80px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}
     >
       <Container maxWidth="sm">
