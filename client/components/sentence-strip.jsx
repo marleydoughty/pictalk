@@ -1,20 +1,48 @@
 import React from 'react';
 import { Paper, Box, IconButton, Tooltip } from '@mui/material';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import BackspaceIcon from '@mui/icons-material/Backspace';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CloseIcon from '@mui/icons-material/Close';
 import IconCardItem from './icon-card-item';
 
-const SentenceStrip = ({ words, handleDelete }) => {
-  const handleSpeak = () => {
+const SentenceStrip = ({ words, handleDelete, handleClearAll }) => {
+  const handleSpeakSentence = () => {
     if (words.length === 0) return;
 
     const sentence = words.map(word => word.name).join(' ');
     const utterance = new SpeechSynthesisUtterance(sentence);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.9; // Slightly slower for clarity
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const handleSpeakWord = (word, event) => {
+    // Stop event from bubbling up to the sentence strip click handler
+    event.stopPropagation();
+
+    // For single letters, add context to make it speak naturally
+    const textToSpeak = word.name.length === 1 ? `${word.name}.` : word.name;
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.9; // Slightly slower for clarity
     window.speechSynthesis.speak(utterance);
   };
 
   const allIcons = words.map(icon => (
-    <IconCardItem icon={icon} key={icon.iconId} />
+    <Box
+      key={icon.iconId}
+      onClick={e => handleSpeakWord(icon, e)}
+      sx={{
+        cursor: 'pointer',
+        borderRadius: 1,
+        transition: 'all 0.2s ease',
+        '&:hover': {
+          transform: 'scale(1.05)',
+          backgroundColor: 'rgba(102, 126, 234, 0.1)'
+        }
+      }}
+    >
+      <IconCardItem icon={icon} />
+    </Box>
   ));
 
   return (
@@ -31,8 +59,9 @@ const SentenceStrip = ({ words, handleDelete }) => {
         gap: 2
       }}
     >
-      {/* Icons Display Area */}
+      {/* Clickable Icons Display Area */}
       <Box
+        onClick={handleSpeakSentence}
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -42,6 +71,14 @@ const SentenceStrip = ({ words, handleDelete }) => {
           minHeight: '80px',
           overflowX: 'auto',
           overflowY: 'hidden',
+          cursor: words.length > 0 ? 'pointer' : 'default',
+          padding: 1,
+          borderRadius: 1,
+          transition: 'background-color 0.2s ease',
+          '&:hover': {
+            backgroundColor:
+              words.length > 0 ? 'rgba(76, 175, 80, 0.05)' : 'transparent'
+          },
           '&::-webkit-scrollbar': {
             height: '8px'
           },
@@ -57,10 +94,11 @@ const SentenceStrip = ({ words, handleDelete }) => {
             sx={{
               color: 'text.secondary',
               fontStyle: 'italic',
-              ml: 1
+              ml: 1,
+              pointerEvents: 'none'
             }}
           >
-            Tap icons to build a sentence...
+            Tap icons to build a sentence, then click here to speak...
           </Box>
             )
           : (
@@ -76,42 +114,36 @@ const SentenceStrip = ({ words, handleDelete }) => {
           gap: 1
         }}
       >
-        <Tooltip title="Play sentence" placement="left">
-          <IconButton
-            onClick={handleSpeak}
-            disabled={words.length === 0}
-            sx={{
-              color: 'success.main',
-              '&:hover': {
-                backgroundColor: 'success.light',
-                color: 'success.dark'
-              },
-              '&.Mui-disabled': {
-                color: 'action.disabled'
-              }
-            }}
-          >
-            <PlayArrowIcon sx={{ fontSize: 32 }} />
-          </IconButton>
+        <Tooltip title="Undo last" placement="left">
+          <span>
+            <IconButton
+              onClick={handleDelete}
+              disabled={words.length === 0}
+              sx={{
+                '&.Mui-disabled': {
+                  color: 'action.disabled'
+                }
+              }}
+            >
+              <ArrowBackIcon sx={{ fontSize: 28 }} />
+            </IconButton>
+          </span>
         </Tooltip>
 
-        <Tooltip title="Delete last icon" placement="left">
-          <IconButton
-            onClick={handleDelete}
-            disabled={words.length === 0}
-            sx={{
-              color: 'error.main',
-              '&:hover': {
-                backgroundColor: 'error.light',
-                color: 'error.dark'
-              },
-              '&.Mui-disabled': {
-                color: 'action.disabled'
-              }
-            }}
-          >
-            <BackspaceIcon sx={{ fontSize: 32 }} />
-          </IconButton>
+        <Tooltip title="Clear all" placement="left">
+          <span>
+            <IconButton
+              onClick={handleClearAll}
+              disabled={words.length === 0}
+              sx={{
+                '&.Mui-disabled': {
+                  color: 'action.disabled'
+                }
+              }}
+            >
+              <CloseIcon sx={{ fontSize: 28 }} />
+            </IconButton>
+          </span>
         </Tooltip>
       </Box>
     </Paper>
