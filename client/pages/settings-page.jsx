@@ -10,7 +10,6 @@ import {
   Divider,
   List,
   ListItem,
-  Avatar,
   Chip,
   Switch,
   FormControlLabel,
@@ -102,28 +101,28 @@ export default function SettingsPage() {
               Settings
             </Typography>
 
+            {/* Account Section */}
             <Box sx={{ mb: 3 }}>
               <Box
-                sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}
+                sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}
               >
-                <Avatar
-                  sx={{
-                    width: 56,
-                    height: 56,
-                    background:
-                      'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                  }}
-                >
-                  <PersonIcon sx={{ fontSize: 32 }} />
-                </Avatar>
-                <Box sx={{ flex: 1 }}>
-                  <Typography variant="overline" color="text.secondary">
-                    Account
-                  </Typography>
-                  <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                    {username}
-                  </Typography>
-                </Box>
+                <PersonIcon color="primary" />
+                <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                  ACCOUNT INFO
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  pl: 4
+                }}
+              >
+                <Typography variant="body1">
+                  Username: <strong>{username}</strong>
+                </Typography>
                 <Button
                   variant="outlined"
                   color="error"
@@ -252,18 +251,9 @@ export default function SettingsPage() {
                 >
                   Flaticon
                 </a>
-                .
+                . Click the link to explore their collection or visit
+                www.flaticon.com
               </Typography>
-
-              <Box sx={{ pl: 4, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                <Chip label="v1.0.0" size="small" variant="outlined" />
-                <Chip
-                  label="PicTalk"
-                  size="small"
-                  color="primary"
-                  variant="outlined"
-                />
-              </Box>
             </Box>
           </CardContent>
         </Card>
