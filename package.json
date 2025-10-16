@@ -11,7 +11,7 @@
     "dev:client": "webpack serve --mode=development",
     "dev:server": "nodemon server/index.js",
     "db:import": "bash scripts/db-import.sh",
-    "prepare": "husky install"
+    "prepare": "if [ -d .git ]; then husky install; fi"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
