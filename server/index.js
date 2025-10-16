@@ -97,7 +97,6 @@ app.get('/api/folders', (req, res, next) => {
 });
 
 app.use(errorMiddleware);
-// Catch-all route for React Router - ADD THESE LINES
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
