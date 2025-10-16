@@ -11,23 +11,24 @@ const errorMiddleware = require('./error-middleware');
 const app = express();
 const jsonMiddleware = express.json();
 
-// ✅ Connect to your Render Postgres DB
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false }
 });
 
-// ✅ Always parse JSON before routes
 app.use(jsonMiddleware);
 
-// ✅ Serve built static files FIRST
+// eslint-disable-next-line no-console
+console.log('🧩 Static files path:', path.join(__dirname, 'public'));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ✅ Public routes (auth)
 app.post('/api/auth/sign-up', async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    if (!username || !password) { throw new ClientError(400, 'username and password are required fields'); }
+    if (!username || !password) {
+      throw new ClientError(400, 'username and password are required fields');
+    }
 
     const hashedPassword = await argon2.hash(password);
     const sql = `
@@ -68,7 +69,6 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
   }
 });
 
-// ✅ Protect API routes *after* public ones
 app.use('/api', authorizationMiddleware);
 
 app.get('/api/icons/:folderId', async (req, res, next) => {
@@ -90,10 +90,8 @@ app.get('/api/folders', async (req, res, next) => {
   }
 });
 
-// ✅ Error middleware
 app.use(errorMiddleware);
 
-// ✅ Catch-all: send React index.html (MUST come last)
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
