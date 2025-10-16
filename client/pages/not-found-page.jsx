@@ -1,10 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NotFoundPage = () => {
   return (
-    <div className='return-not-found'>
-      <p>Uh oh, we could not find the page you were looking for!<br />
-        <button><a href='#home-page' className='rtn-home-btn'>Home</a></button>
+    <div className="return-not-found">
+      <p>
+        Uh oh, we could not find the page you were looking for!
+        <br />
+        <Link to="/home">
+          <button className="rtn-home-btn">Home</button>
+        </Link>
       </p>
     </div>
   );

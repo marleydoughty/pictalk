@@ -1,43 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Box, CircularProgress, Alert } from '@mui/material';
+import { api } from '../lib/api';
 import IconCardItem from './icon-card-item';
 
-export default class IconCards extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = ({
-      icons: [],
-      isLoading: true
-    });
-  }
+export default function IconCards({ onClickIcon, folderId }) {
+  const [icons, setIcons] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  componentDidMount() {
-    const token = window.localStorage.getItem('token');
-    fetch(`/api/icons/${this.props.folderId || 1}`, {
-      headers: {
-        'X-Access-Token': token,
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.json())
+  useEffect(() => {
+    setIsLoading(true);
+    setError(null);
+
+    api
+      .getIcons(folderId || 1)
       .then(data => {
-        this.setState({
-          icons: data,
-          isLoading: false
-        });
+        setIcons(data);
+        setIsLoading(false);
       })
-      .catch(err => console.error('Unexpected error occured', err));
-  }
+      .catch(err => {
+        setError(err.message);
+        setIsLoading(false);
+        console.error('Error fetching icons:', err);
+      });
+  }, [folderId]);
 
-  render() {
-    const icons = this.state.icons;
-    const allIcons = icons.map(icon => (
-      <IconCardItem icon={icon} onClick={() => this.props.onClickIcon(icon)} key={icon.iconId} />
-    ));
+  if (isLoading) {
     return (
-      <>
-        {this.state.isLoading && <div className='is-loading'>...Loading</div>}
-        {allIcons}
-      </>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '200px',
+          width: '100%'
+        }}
+      >
+        <CircularProgress size={60} />
+      </Box>
     );
   }
+
+  if (error) {
+    return (
+      <Box sx={{ width: '100%', px: 2 }}>
+        <Alert severity="error">Error: {error}</Alert>
+      </Box>
+    );
+  }
+
+  return (
+    <>
+      {icons.map(icon => (
+        <IconCardItem
+          icon={icon}
+          onClick={() => onClickIcon(icon)}
+          key={icon.iconId}
+        />
+      ))}
+    </>
+  );
 }
