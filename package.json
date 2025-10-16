@@ -10,8 +10,7 @@
     "dev": "npm-run-all --silent --parallel dev:*",
     "dev:client": "webpack serve --mode=development",
     "dev:server": "nodemon server/index.js",
-    "db:import": "bash scripts/db-import.sh",
-    "prepare": "husky install"
+    "db:import": "bash scripts/db-import.sh"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -39,7 +38,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.2.0",
     "eslint-plugin-react": "^7.27.1",
-    "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "markuplint": "^1.11.4",
     "nodemon": "^2.0.15",
